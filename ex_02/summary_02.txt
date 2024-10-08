@@ -1,0 +1,14 @@
+1) Summarize your answers for today's exercise.
+
+
+
+
+2) Explain the meaning of the results obtained by running the completed program.
+
+
+
+
+3) Describe the breadth-first search algorithm using the same style as shown in the
+right figure in slide 25.
+
+
