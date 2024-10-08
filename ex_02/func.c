@@ -2,9 +2,9 @@
  * @file func.c
  * @date 2016/10/04
  * @author Yuta Kobiyama (m5191140@u-aizu.ac.jp)
- * @brief DFS and BFS implementations.
+ * @brief DFSおよびBFSの実装。
  * @details
- *  Artificial Intelligence, 2nd Exercise\n
+ *  人工知能、第二演習\n
  *  Copyright (C) 2016 System Intelligence Laboratory, All Rights Reserved
  */
 
@@ -17,43 +17,43 @@ static void dfs_visit(Graph const*, VertexState*, size_t);
 
 
 /**
- * @brief Function for depth first search.
- * @param g The pointer to the given graph.
+ * @brief 深さ優先探索（DFS）の関数。
+ * @param g 指定されたグラフへのポインタ。
  */
 void dfs(Graph const* g)
 {
     printf("DFS: ");
 
-    // Initialize all vertices by reseting their states to UNVISITED.
+    // 全ての頂点の状態をUNVISITEDにリセットする。
     VertexState vertex_states[MAX_VERTEX_SIZE];
     for (size_t i = 0; i < g->vertex_count; i++) {
         vertex_states[i] = UNVISITED;
     }
 
-    // TODO: 1. Set the arguments in order to start DFS.
-    dfs_visit(/*---------------------------------------*/);
+    // TODO: 1. DFSを開始するための引数を設定する。
+    dfs_visit(g,vertex_states,g->vertex_starting_search);
     putchar('\n');
 }
 
 
 /**
- * @brief Function for recursive call of DFS.
- * @param g The pointer to the given graph.
- * @param vertex_states The pointer to the state array of the vertices.
- * @param current_vertex The current vertex under consideration.
+ * @brief DFSの再帰呼び出し用関数。
+ * @param g 指定されたグラフへのポインタ。
+ * @param vertex_states 頂点の状態配列へのポインタ。
+ * @param current_vertex 現在注目している頂点。
  */
 static void dfs_visit(Graph const* g, VertexState* vertex_states, size_t current_vertex)
 {
-    // Print current vertex number.
+    // 現在の頂点番号を表示する。
     printf("%zu ", current_vertex);
 
-    // TODO: 2. Change the current vertex state.
-    vertex_states[current_vertex] = /*-------*/;
+    // TODO: 2. 現在の頂点の状態を変更する。
+    vertex_states[current_vertex] = VISITED;
 
-    // Loop for child vertices.
+    // 子頂点をループする。
     for (size_t i = 0; i < g->vertex_count; i++) {
-        // TODO: 3. If the i-th vertex is not visited yet and the current vertex is connected to it, visit the i-th vertex recursively.
-        if (/*---------------------------------------------------------------------------------------*/) {
+        // TODO: 3. i番目の頂点が未訪問かつ現在の頂点と接続されている場合、再帰的にi番目の頂点を訪問する。
+        if ((vertex_states[i] == UNVISITED) && (g->adjacent_matrix[current_vertex][i] == CONNECTED)) {
             dfs_visit(g, vertex_states, i);
         }
     }
@@ -61,38 +61,38 @@ static void dfs_visit(Graph const* g, VertexState* vertex_states, size_t current
 
 
 /**
- * @brief Function for breadth first search.
- * @param g The pointer to the given graph.
+ * @brief 幅優先探索（BFS）の関数。
+ * @param g 指定されたグラフへのポインタ。
  */
 void bfs(Graph const* g)
 {
     printf("BFS: ");
 
-    // Initialize all vertices by reseting their states to UNVISITED.
+    // 全ての頂点の状態をUNVISITEDにリセットする。
     VertexState vertex_states[MAX_VERTEX_SIZE];
     for (size_t i = 0; i < g->vertex_count; i++) {
         vertex_states[i] = UNVISITED;
     }
 
-    // Initialize the queue used for tracking the search process.
+    // 探索プロセスを追跡するためのキューを初期化する。
     s_queue_init(NULL);
 
-    // TODO: 4. Set the argument to start BFS.
-    // Set start vertex to begin searching.
-    s_queue_enqueue(/*-------------------------*/);
+    // TODO: 4. BFSを開始するための引数を設定する。
+    // 探索を開始する頂点を設定する。
+    s_queue_enqueue(g->vertex_starting_search);
 
-    // TODO: 5. Set the state of the starting vertex to begin search.
-    // The starting vertex is in the queue and it state should be visited.
-    vertex_states[g->vertex_starting_search] = /*-------*/;
+    // TODO: 5. 探索開始のため、開始頂点の状態を設定する。
+    // 開始頂点がキューにあり、その状態をVISITEDにする。
+    vertex_states[g->vertex_starting_search] = VISITED;
 
     while (s_queue_is_empty() == false) {
         size_t current_vertex = s_queue_dequeue();
         printf("%zu ", current_vertex);
 
-        // Loop for child vertices.
+        // 子頂点をループする。
         for (size_t i = 0; i < g->vertex_count; i++) {
-            // TODO: 6. If the i-th vertex is not visited yet and the current vertex is connected to it, append it to the queue.
-            if (/*---------------------------------------------------------------------------------------*/) {
+            // TODO: 6. i番目の頂点が未訪問かつ現在の頂点と接続されている場合、キューに追加する。
+            if (vertex_states[i] == UNVISITED && g->adjacent_matrix[current_vertex][i] == CONNECTED) {
                 vertex_states[i] = VISITED;
                 s_queue_enqueue(i);
             }

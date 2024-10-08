@@ -2,9 +2,9 @@
  * @file prog_02.h
  * @date 2016/10/06
  * @author Yuta Kobiyama (m5191140@u-aizu.ac.jp)
- * @brief Main header file.
+ * @brief メインヘッダーファイル。
  * @details
- *  Artificial Intelligence 2nd Exercise\n
+ *  人工知能、第二演習\n
  *  Copyright (C) 2016 System Intelligence Laboratory, All Rights Reserved
  */
 
@@ -17,40 +17,40 @@
 
 
 /**
- * @brief This enum has numerical constants.
+ * @brief この列挙型は数値定数を持ちます。
  */
 enum {
-    MAX_VERTEX_SIZE = MAX_QUEUE_SIZE, //!< Define the maximum number of vertices.
+    MAX_VERTEX_SIZE = MAX_QUEUE_SIZE, //!< 頂点数の最大値を定義します。
 };
 
 /**
  * @enum vertex_state
- * @brief This enum defines the state of a vertex.
+ * @brief この列挙型は頂点の状態を定義します。
  */
 enum vertex_state {
-    VISITED,   //!< Take this value if the vertex is visited.
-    UNVISITED, //!< Take this value if the vertex is unvisited.
+    VISITED,   //!< 頂点が訪問済みである場合にこの値を取ります。
+    UNVISITED, //!< 頂点が未訪問である場合にこの値を取ります。
 };
 typedef enum vertex_state VertexState;
 
 /**
  * @enum edge_state
- * @brief This enum defines the existence of an edge.
+ * @brief この列挙型はエッジの有無を定義します。
  */
 enum edge_state {
-    NOT_CONNECTED = 0, //!< Take this value if the edge does not exist.
-    CONNECTED,         //!< Take this value if the edge exists.
+    NOT_CONNECTED = 0, //!< エッジが存在しない場合にこの値を取ります。
+    CONNECTED,         //!< エッジが存在する場合にこの値を取ります。
 };
 typedef enum edge_state EdgeState;
 
 /**
  * @struct graph
- * @brief This struct defines a graph.
+ * @brief この構造体はグラフを定義します。
  */
 struct graph {
-    EdgeState adjacent_matrix[MAX_VERTEX_SIZE][MAX_VERTEX_SIZE]; //!< The adjacent matrix.
-    size_t vertex_count;                                         //!< The number of vertices.
-    size_t vertex_starting_search;                               //!< The starting vertex for search.
+    EdgeState adjacent_matrix[MAX_VERTEX_SIZE][MAX_VERTEX_SIZE]; //!< 隣接行列。
+    size_t vertex_count;                                         //!< 頂点の数。
+    size_t vertex_starting_search;                               //!< 探索を開始する頂点。
 };
 typedef struct graph Graph;
 
