@@ -1,10 +1,29 @@
 1) Summarize your answers for today's exercise.
 
+TODO: 1.
+g->vertex_starting_searchを開始頂点とした。
 
+TODO: 2.
+vertexをVISITEDに変更。
+
+TODO: 3.
+vertexが訪れていないかつ、この隣接行列がつながっている場合。
+
+TODO 4.
+スタートをg->vertex_starting_searchにした。
+
+TODO: 5.
+vertexをVISITEDに変更。
+
+TODO: 6.
+vertexが訪れていないかつ、この隣接行列がつながっている場合。
 
 
 2) Explain the meaning of the results obtained by running the completed program.
 
+完成したプログラムを実行した結果、DFSとBFSそれぞれで異なる訪問順が得られます。DFSは1つの方向に可能な限り進み、行き止まりに達したら戻るため、深さ優先の訪問順が表示されます。BFSは現在のノードに隣接する全てのノードを優先的に訪問するため、幅広く探索した順序が出力されます。
+
+この違いにより、DFSはツリーの深部にアクセスするのに向いており、BFSは最短経路の探索などに適しています。
 
 
 
@@ -12,3 +31,26 @@
 right figure in slide 25.
 
 
+**Algorithm 2 Breadth-First Search (BFS).**
+
+**Input:**
+Graph \( G = (V, E) \) where \( V \) is the set of vertices and \( E \) is the set of edges;
+Starting vertex \( s \in V \);
+
+**Output:**
+Traversal order of vertices from \( s \);
+
+1: Initialize an empty queue \( Q \)
+2: Enqueue \( s \) to \( Q \)
+3: Mark \( s \) as visited
+4: while \( Q \) is not empty do
+5     Dequeue a vertex \( v \) from \( Q \)
+      for each neighbor \( u \) of \( v \) do
+        if \( u \) is not visited then
+          Enqueue \( u \) to \( Q \)
+            Mark \( u \) as visited
+        ;end if
+      end for
+12: end while
+
+13: **return** traversal order of vertices
